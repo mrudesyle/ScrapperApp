@@ -1,0 +1,38 @@
+{
+  "name": "scrapperapp",
+  "version": "1.0.0",
+  "description": "web scrapper app built with mongo, node.js, bootstrap, handlebars",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "foundation": "^4.2.1-1",
+    "mongoose": "^5.1.5",
+    "morgan": "^1.9.0",
+    "request": "^2.87.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrudesyle/ScrapperApp.git"
+  },
+  "keywords": [
+    "node",
+    "mongo",
+    "mongoose",
+    "bootstrap",
+    "cherrio"
+  ],
+  "author": "mark a. rudesyle",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrudesyle/ScrapperApp/issues"
+  },
+  "homepage": "https://github.com/mrudesyle/ScrapperApp#readme"
+}

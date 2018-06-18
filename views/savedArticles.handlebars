@@ -1,0 +1,145 @@
+<div class="row nav-row row-ninetyeigth" id="top">
+  <div class="col-xs-12">
+    <div class="subgrid nav">
+      <div class="row">
+        <div class="col-xs-12 col-md-3 col-sm-12">
+          <h1 class="heading-1">MongoScrapper</h1>
+        </div>
+        <div class="col-xs-12 navigation col-xl-8 col-md-12 col-lg-9">
+          <a class="link-button btn nav-link" href="/">All articles</a>
+          <a class="link-button btn nav-link" href="#">Saved Articles</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row row-1 row-ninetyeigth">
+  <div class="col-xs-12 header-cover">
+    <div class="container-fluid header-image">
+      {{!--
+      <h1 class="heading-2">Mongo Scraper</h1> --}}
+      <h2 class="heading-3">Your Saved Articles!</h2>
+    </div>
+  </div>
+</div>
+
+{{!-- article --}} {{#each articles}}
+<div class="row row-ninetyeigth article-row">
+  <div class="col-xs-12 column-1">
+    <div class="subgrid">
+      <div class="row subgrid-row-1">
+        <div class="col-xs-8 article-col col-sm-8 col-md-7 col-lg-8">
+          <h1 class="article-h1">{{this.title}}</h1>
+        </div>
+        <form action="/delete/{{this.id}}?_method=DELETE method=" POST ">
+        <div class="col-xs-4 article-col col-sm-1 col-md-5 col-lg-4 ">">
+          <button type="submit" class="btn danger">Delete Article</button>
+        </form>
+        <button id="modalbutton" type="button" class="btn" data-toggle="modal" data-id={{this.id}} data-target="#myModal">Article Notes</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 subgrid-column-2">
+        <a href={{this.link}}>
+          <p>{{this.link}}</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{{/each}}
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header-cust">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title modal-heading" id="myModalLabel">Notes for Article
+          <span id="articleID"></span>
+        </h4>
+      </div>
+      <div class="modal-body">
+        <div id="notes"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<!--  -->
+<script>
+  $(document).on("click", "#modalbutton", function () {
+    // Empty the notes from the note section
+    $("#notes").empty();
+    // Save the id from the button tag
+    var thisId = $(this).attr("data-id");
+    $("#articleID").text(thisId);
+    // Now make an ajax call for the Article
+    $.ajax({
+      method: "GET",
+      url: "/articles/" + thisId
+    }).done(function (data) {
+      console.log(data);
+      // Placeholder for notes
+      $("#notes").append("<p id='actualnotes'></p>");
+
+      if (data.notes) {
+
+        $("#actualnotes").append("<ul id='notelist'>");
+        for (var i = 0; i < data.notes.length; i++) {
+          $('#notelist').append("<li id='" + data.notes[i]._id + "'>" + data.notes[i].body + " " +
+            "<button data-id='" + data.notes[i]._id +
+            "' id='deletenote'>X</button></li>");
+        }
+        $('#actualnotes').append("</ul>");
+
+      } else {
+        $('#actualnotes').text("There aren't any notes yet.");
+      }
+      // A textarea to add a new note body
+      $("#notes").append("<textarea id='bodyinput' name='body'class='required'></textarea>");
+      // A button to submit a new note, with the id of the article saved to it
+      $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
+      $("#savenote").addClass("modalBtn");
+    });
+  });
+  // When you click the savenote button
+  $(document).on("click", "#savenote", function () {
+    // Grab the id associated with the article from the submit button
+    var thisId = $(this).attr("data-id");
+    // Run a POST request to change the note, using what's entered in the inputs
+    $.ajax({
+      method: "POST",
+      url: "/articles/" + thisId,
+      data: {
+        // Value taken from note textarea
+        body: $("#bodyinput").val()
+      }
+    }).done(function (data) {
+
+      $("#notelist").empty();
+      for (var i = 0; i < data.notes.length; i++) {
+        $("#notelist").append("<li id='" + data.notes[i]._id + "'>" + data.notes[i].body + " " + "<button data-id='" + data.notes[i]._id +
+          "' id='deletenote'>X</button></li>");
+      }
+    });
+    //remove the values entered in the input and textarea 
+    $("#bodyinput").val("");
+  });
+  // When you click the deletenote button
+  $(document).on("click", "#deletenote", function () {
+    // Grab the id associated with the note
+    var thisId = $(this).attr("data-id");
+    // Run a POST request to delete the note
+    $.ajax({
+      method: "GET",
+      url: "/notes/" + thisId,
+    }).done(function (data) {
+
+      $("#" + data._id).remove();
+    });
+  });
+</script>

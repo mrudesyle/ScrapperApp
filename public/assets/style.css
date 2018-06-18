@@ -1,0 +1,103 @@
+body {
+	background-color: #DFECF6;
+}
+button:hover {
+
+    box-shadow: 0 8px 10px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+button:active {
+  
+  box-shadow: 0 5px #666;
+  transform: translateY(3px);
+}
+.navbar{
+	background-color: #122D3F;
+}
+.jumbotron h4{
+	margin-left: 60px;
+}
+.jumbotron{
+	width: 100%;
+	background-color: #183a52;
+	color:white;
+	border-bottom: 5px solid #d9534f;
+}
+
+.scrape{
+	margin-top: 20px;
+
+}
+
+
+.panel .panel-heading{
+	max-width: 100%;
+	margin-left: 0px;
+	background-color: #90C0E0;
+}
+.panel .panel-heading h3 {
+
+	margin-top: 6px;
+}
+
+.panel .panel-body p{
+	margin-left: 30px;
+	margin-top: 5px;
+	font-size: 18px;
+}
+.delete {
+	margin-right: 20px;
+	margin-left: 15px;
+}
+
+
+.panel {
+	border-style: none;
+	box-shadow: 0 8px 10px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.modal {
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+	width: 600px;
+  max-width: 100%;
+
+}
+
+.saveNote {
+	float: right;
+	margin-top: 10px;
+	margin-right: 30px;
+}
+
+#bodyinput {
+	width: 50%;
+}
+#deletenote {
+		background-color: #d9534f;
+		color:white;
+		border-style: none;
+		font-size: 10px;
+		padding: 1px 4px 1px 4px;
+		border-radius: 2px;
+		margin-bottom: 2px;
+		margin-left: 8px;
+}
+.h4 {
+	color: white;
+	float: right;
+	margin-left: 60px;
+	margin-top: 15px;
+
+}
+.modal .modal-header {
+	background-color: #90C0E0;
+	color: white;
+}
+
+
+
+
+

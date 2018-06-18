@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>MongoScrapper</title>
+	<link rel="stylesheet" href="css/bootstrap4.min.css">
+	<link rel="stylesheet" href="css/wireframe-theme.min.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato%7CRoboto:400,b">
+	<!-- SMOOTH SCROLL -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script>
+		$(function () {
+			$('a[href*=#]:not([href=#])').click(function () {
+				if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+					var target = $(this.hash);
+					target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+					if (target.length) {
+						$('html,body').animate({
+							scrollTop: target.offset().top
+						}, 1000);
+						return false;
+					}
+				}
+			});
+		});
+	</script>
+	<!-- End of SMOOTH SCROLL -->
+</head>
+
+<body class="grid-1">
+	{{{ body }}}
+	{{!-- footer --}}
+	<div class="row row-2 ">
+		<div class="col-xs-12 footer ">
+			<p class="paragraph copyright ">
+				<a title=" " href="#top " class="link-color ">Back to top</a>
+				<br>Mark A. Rudesyle</p>
+			<a href="# " class="link-button-glyph btn goto-top ">
+				<span class="glyph-for-button goto-top ">
+					<i class="coffeecup-icons-arrow-up4 "></i>
+				</span>
+			</a>
+		</div>
+	</div>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script> 
+</body>
+
+</html>
